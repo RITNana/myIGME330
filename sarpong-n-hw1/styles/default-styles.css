@@ -1,0 +1,139 @@
+#output {
+    font-family: "Public Pixel";
+    font-size: 25px;
+    letter-spacing: 2pt;
+    margin-top: 20px;
+}
+
+#myButton {
+    width: 150pt;
+    height: 50px;
+    border-radius: 10px;
+}
+
+#fiveButton {
+    display: none;
+}
+
+div{
+    margin-top: 10px;
+}
+
+
+
+
+@media only screen and (min-width: 240px) {
+    body {
+
+        text-align: center;
+
+
+    }
+
+    h1 {
+        font-family: 'Bitter', serif;
+        font-size: 2rem;
+        background-color: #FFE800;
+        color: white;
+    }
+
+    #output {
+        font-size: 12px;
+        padding-left: 15px;
+    }
+
+    #myButton {
+        border-radius: 20px;
+        box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+            inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+    }
+}
+
+@media only screen and (min-width: 320px) {
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+
+    html,
+    body,
+    .container {
+        height: 100%;
+        margin: 0;
+    }
+
+    h1 {
+        font-family: 'Bitter', serif;
+        font-size: 1.2rem;
+        background-color: #174287;
+        color: #F5F5F5;
+        padding: 0.8rem;
+        margin: 0;
+        text-align: center;
+    }
+
+    #output {
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    h1 {
+        font-family: 'Bitter', serif;
+        font-size: 3rem;
+        background-color: #23D160;
+    }
+
+    #myButton {
+        width: 300px;
+        height: 75pt;
+        font-size: 1.5rem;
+    }
+
+    body {
+        color: darkgray;
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    body {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    h1 {
+        font-family: 'Bitter', serif;
+        background-color: #FF3860;
+    }
+
+    .container {
+        display: block;
+        margin: 1rem;
+    }
+
+    #output {
+        text-align: left;
+        font-size: larger;
+    }
+}
+
+@media only screen and (min-width: 1408px) {
+    #fiveButton {
+        display: inline;
+        width: 300px;
+        height: 75pt;
+        border-radius: 10px;
+        font-size: 1.5rem;
+        margin-left: 10px;
+
+        border-radius: 20px;
+        box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+            inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    
+}

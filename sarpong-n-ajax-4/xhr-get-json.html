@@ -1,0 +1,84 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>XHR - Load XML</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2>XHR - Load JSON</h2>
+    
+    <hr>
+    <button id="my-button">Load Data</button>
+    <div id="output">Click button to load</div>
+
+
+    <script>
+        // 1) make a reference to the button and when clicked, program called loadTextXHR function
+        document.querySelector("#my-button").onclick = loadJsonXHR;
+
+        // will allow us to create a XML request and display the data
+        function loadJsonXHR() {
+            // 2) hard-code URL to be downlaoded
+            const url = "data/simple-pet-names.json";
+
+            // 3) - using XHR to retireve data from URL
+            const xhr = new XMLHttpRequest();
+
+            // 3A) When the data loads
+            xhr.onload = (e) => {
+                // returns retrieved status code for successful load
+                console.log(`In onload - HTTP Status Code = ${e.target.status}`);
+                let json;
+
+                try{
+                    // targeting the retrieved JSON data from the XML request
+                // declare and intialize a variable to parse, or convert, JSON string into an object
+                 json = JSON.parse(e.target.responseText);
+                } catch{
+                    // if json parsing fails, display message on page and exit out
+                    document.querySelector("#output").innerHTML = "BAD JSON!";
+                    return;
+                }
+                
+                // declare a variable and initialize to all the keys in our JSON object
+                const keys = Object.keys(json)
+
+                // what will hold the display on our webpage
+                let html = "";
+
+                // loop through the keys
+                // display the properties from the object keys
+                // display the list items of dogs and cats in a new array and join array
+                for(let k of keys){
+                   // console.log(json[k]);
+                   const obj = json[k];
+                   html += `<h3>${obj.title}</h3>`
+                   html +=`<ol>${obj.namelist.map(w => `<li>${w}</li>`).join("")}</ol>`;
+                  
+                }
+                
+          
+
+                // reference the <div> and update the HTMl webpage 
+                document.querySelector("#output").innerHTML = html; 
+
+
+            };
+            // if request fails get the response code for it
+            xhr.onerror = e => console.log(`In onerror - HTTP Status Code = ${e.target.status}`);
+            xhr.open("GET", url); // reinitializes the request we sent "GET"
+            xhr.send(); // send request to the server
+        }
+    </script>
+</body>
+
+</html>

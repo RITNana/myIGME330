@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Greeter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: "Kanit";
+            font-size: 1.5em;
+        }
+
+        button {
+            width: 150px;
+            height: 50px;
+            font-size: 14pt;
+        }
+
+        @media screen and (min-width: 1024px) {
+            body {
+                background-color: rgb(56, 95, 113);
+                padding: 100px;
+            }
+        }
+
+        label {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn-hello">Say Hello!</button>
+    <button class="btn-goodbye">Say GoodBye!</button>
+    <input type="checkbox" id="uppercase" name="shoutify">
+    <label for="uppercase">Shoutify!</label>
+    <hr>
+    <input id="input-firstname" placeholder="Type in your first name">
+    <input id="input-lastname" placeholder="Type in your last name">
+    <p id="output">???</p>
+</body>
+
+<script>
+
+    "use strict";
+    window.onload = () => {
+
+        // function runs when the page is reloaded
+        // holds all the necessary code
+
+
+
+        // 1 - get a reference to the buttons and checkbox
+        let helloButton = document.querySelector(".btn-hello");
+        let goodbyeButton = document.querySelector(".btn-goodbye");
+        let checkBox = document.querySelector("#uppercase")
+
+
+        // 2 - add a click event to button that calls a `greeting` function and takes a string parameter
+        helloButton.addEventListener("click", () => greet("Hello"))
+        goodbyeButton.addEventListener("click", () => greet("Goodbye"))
+
+        // when the checkbox is clicked, the program goes to the function reference
+        checkBox.addEventListener("change", () => shoutWords())
+
+        // based on the string paramter passed, will display a greeting with first and last name entered
+        const greet = (greeting) => {
+
+            let firstName = document.querySelector("#input-firstname").value
+            let lastName = document.querySelector("#input-lastname").value
+            firstName.trim();
+            lastName.trim();
+            // 3B - get a reference to the #output <p>
+            let output = document.querySelector("#output");
+
+
+            // if no firstname entered - set default name to be "Peter"
+            if (!firstName) {
+                firstName = "Peter";
+            }
+            // if no last name entered - set default name to be "Parker"
+            if (!lastName) {
+                lastName = "Parker";
+            }
+
+            // 3C - update HTML of #output <p> 
+            output.innerHTML = `${greeting} ${firstName} ${lastName}`
+        }
+
+        // uppercase the greeting words
+        const shoutWords = () => {
+            // get a reference to the <p> element
+            let output = document.querySelector("#output");
+
+            // declare a variable that will be the text for the <p> element
+            let currentContext = output.innerHTML;
+            if (checkBox.checked) {
+                let modifiedContent = currentContext.toUpperCase(); // the modified text will make the current text uppercased
+                output.innerHTML = modifiedContent // set the updated HTML to be the modified content of the <p> element
+            }
+
+
+        }
+
+        // Set the color and background color of p
+        document.querySelector("p").style.color = "#2D1E2F";
+        document.querySelector("p").style.backgroundColor = "#A9E5BB";
+    }
+</script>
+
+
+
+</html>

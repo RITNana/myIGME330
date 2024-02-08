@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>XHR - Load Text</title>
+	<style>
+	body{
+	  font-family: sans-serif;
+	}
+	</style>
+
+</head>
+<body>
+	<h2>XHR - Load Text File</h2>
+	<p>The <code>pet-names.txt</code> file contains popular dog and cat pet names, separated by commas.</p>
+	<p>Note that because XHR is loading a local file, this and the other examples will have to be run off a web server rather than from your computer's hard drive (e.g. banjo.rit.edu or VSCode's liveserver etc)</p>
+	
+	<hr>
+	<button id="my-button">Load Data</button>
+	<p id="output">Click button to load</p>
+	
+
+<script>
+    // 1) make a reference to the button and when clicked, program called loadTextXHR function
+    document.querySelector("#my-button").onclick = loadTextXHR;
+
+    function loadTextXHR(){
+        // 2) hard-code URL to be downlaoded
+        const url = "data/pet-names.txt";
+
+        // 3) - using XHR to retireve data from URL
+        const xhr = new XMLHttpRequest();
+
+        // 3A) When the data loades
+        xhr.onload = (e) => {
+            // returns retrieved status code for successful load
+            console.log(`In onload - HTTP Status Code = ${e.target.status}`); 
+
+            // returns retrieve text from xhr request
+            const text = e.target.responseText; 
+
+            // testing to get length of text file
+            console.log(`Success - the file length is ${text.length}`)
+            const words = text.split(","); // turn our text into an array
+
+            // turn array into HTML
+            // I. long way
+
+            // create a variable to make an ordered list
+         /*   let html = "<ol>";
+
+             // loop through the word elements in list   
+            for(let w of words){
+                html += `<li>${w}</li>`;
+            }
+            
+            // close ordered list
+            html += "</ol>";
+            // reference our <p> and update the HTML webpage with ordered list
+            document.querySelector("#output").innerHTML = html; */
+
+            // II. one-liner
+           
+            // reference the <p> and string template the new array and returning the concatenated elements in an orderd list
+            document.querySelector("#output").innerHTML = `<ol>${words.map(w => `<li>${w}</li>`).join("")}</ol>`;
+            
+
+        };
+        // if request fails get the response code for it
+        xhr.onerror = e => console.log(`In onerror - HTTP Status Code = ${e.target.status}`);
+        xhr.open("GET", url); // reinitializes the request we sent "GET"
+        xhr.send(); // send request to the server
+    }
+</script>
+</body>
+</html>

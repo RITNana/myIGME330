@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<petnames>
+  Greeter
+  <namelist cid="dognames">Bella,Luna,Charlie,Lucy,Cooper,Max,Bailey,Daisy,Sadie,Lola,Buddy,Molly,Stella,Tucker,Bear,Zoey,Duke,Harley,Maggie,Jax</namelist>
+  <namelist cid="catnames">Oliver,Leo,Milo,Charlie,Simba,Max,Jack,Loki,Tiger,Jasper,Ollie,Oscar,George,Buddy,Toby,Smokey,Finn,Felix,Simon,Shadow</namelist>
+  <namelist cid ="birdnames">Arthur, Bob, Bruno, Charlie, Chip, Dale, Dwight, George, Jack, Max, Paulie, Pete, Sheldon, Becky, Betty, Carrie, Coco, Edith, Ethel, Karen</namelist>
+</petnames>

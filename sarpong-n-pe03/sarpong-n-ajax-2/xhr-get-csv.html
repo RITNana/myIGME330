@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>XHR - Load CSV</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2>XHR - Load CSV </h2>
+    <p>The <code>pet-names.txt</code> file contains popular dog and cat pet names, separated by commas.</p>
+    <p>Note that because XHR is loading a local file, this and the other examples will have to be run off a web server
+        rather than from your computer's hard drive (e.g. banjo.rit.edu or VSCode's liveserver etc)</p>
+
+    <hr>
+    <button id="my-button">Load Data</button>
+    <p id="output">Click button to load</p>
+
+
+    <script>
+        // 1) make a reference to the button and when clicked, program called loadTextXHR function
+        document.querySelector("#my-button").onclick = loadCsvXHR;
+
+        // will allow us to create a XML request and display the data
+        function loadCsvXHR() {
+            // 2) hard-code URL to be downlaoded
+            const url = "data/pet-names.csv";
+
+            // 3) - using XHR to retireve data from URL
+            const xhr = new XMLHttpRequest();
+
+            // 3A) When the data loades
+            xhr.onload = (e) => {
+                // returns retrieved status code for successful load
+                console.log(`In onload - HTTP Status Code = ${e.target.status}`);
+
+                // returns retrieve text from xhr request
+                const text = e.target.responseText;
+
+                // testing to get length of text file
+                console.log(`Success - the file length is ${text.length}`)
+                const lines = text.split("\n"); // turn our text into an array
+                const dogNames = lines[0].split(","); // turn our dog names into an array
+                const catNames = lines[1].split(","); // turn our cat names into an array
+                const birdNames = lines[2].split(",") // turn our bird names into an array
+
+                // string template the new array and returning the concatenated elements in an orderd list for dog, cat, and bird names
+                const dogHTML = `<ol>${dogNames.map(w => `<li>${w}</li>`).join("")}</ol>`;
+                const catHTML = `<ol>${catNames.map(w => `<li>${w}</li>`).join("")}</ol>`;
+                const birdHTML = `<ol>${birdNames.map(w => `<li>${w}</li>`).join("")}</ol>`;
+
+                // give header to the ordered lists
+                const html =
+                    `<h3> Dog Names </h3> 
+                    ${dogHTML}
+                    <h3> Cat Names </h3> 
+                     ${catHTML}
+                     <h3> Bird Names </h3>
+                     ${birdHTML}`
+                    ;
+
+                // reference the <p> and update the HTMl webpage 
+                document.querySelector("#output").innerHTML = html;
+
+
+            };
+            // if request fails get the response code for it
+            xhr.onerror = e => console.log(`In onerror - HTTP Status Code = ${e.target.status}`);
+            xhr.open("GET", url); // reinitializes the request we sent "GET"
+            xhr.send(); // send request to the server
+        }
+    </script>
+</body>
+
+</html>
