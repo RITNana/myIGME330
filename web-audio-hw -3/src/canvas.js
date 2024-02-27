@@ -148,6 +148,15 @@ function draw(params = {}) {
         }
     } // end for
 
+    if(params.showEmboss){
+        // we are stepping through *each* sub-pixel
+    for(let i = 0; i < length; i++){
+        if(i%4 == 3) continue; // skip alpha channel
+        data[i] = 127 + 2 * data[i] - data[i+4] - data[i + width * 4];
+    }
+    }
+    
+
     // D) Copy data back to canvas
     ctx.putImageData(imageData, 0, 0);
 } // end draw
