@@ -57,6 +57,7 @@ const setupWebaudio = (filePath) => {
     gainNode.connect(audioCtx.destination)
 }
 
+// Create our public interface to control audio graphs
 const loadSoundFile = (filePath) => {
     element.src = filePath;
 }
