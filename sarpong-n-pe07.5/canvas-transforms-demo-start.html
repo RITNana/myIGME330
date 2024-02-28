@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Canvas Transforms Starter</title>
+    <style>
+        canvas {
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="640" height="480">
+        Get a real browser!
+    </canvas>
+    <script>
+        'use strict';
+
+        let ctx = document.querySelector('canvas').getContext('2d');
+        let rotation = 0;
+        let translateSpeedX = 0;
+        let translateSpeedY = 0
+        loop();
+
+        function loop() {
+            requestAnimationFrame(loop)
+            rotation += 0.05 // change over time
+            translateSpeedX += 3; // change the x position by 3 over time
+            translateSpeedY += 3; // change the y position by 3 overtime
+            // background
+            ctx.fillStyle = 'yellow';
+            ctx.fillRect(0, 0, 640, 480);
+
+            // draw a "better" triangle - why is this better? You'll see!
+            ctx.save();
+            ctx.translate(500, 100);
+            ctx.rotate(rotation);
+            ctx.scale(1.2, 1.2)
+            ctx.strokeStyle = "red";
+            ctx.fillStyle = "red";
+            ctx.lineWidth = "5";
+            ctx.beginPath();
+            ctx.moveTo(0, -50);
+            ctx.lineTo(50, 50);
+            ctx.lineTo(-50, 50);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.restore();
+
+            // Draw another rotating triangle 
+            // ctx.save()
+            // ctx.translate(200, 350)
+            // ctx.rotate(-rotation);
+            // ctx.scale(1.0, 1.5);
+            // ctx.strokeStyle = "pink";
+            // ctx.fillStyle = "midnightblue";
+            // ctx.lineWidth = "20";
+            // ctx.beginPath();
+            // ctx.moveTo(0, -100);
+            // ctx.lineTo(100, 100);
+            // ctx.lineTo(-100, 100);
+            // ctx.closePath();
+            // ctx.stroke();
+            // ctx.fill()
+            // ctx.restore();
+
+            // draw it with a triangle helper function
+            drawTriangle(ctx, 200, 300, 0, -100, 100, 100, -100, 100, -rotation, 20, "midnightblue")
+
+            // draw another animating shape
+            rectTranslateMove(ctx, 0, 0, translateSpeedX, translateSpeedY, 100, 100, 10)
+
+            drawSquare2(ctx, 200, 100, 100, 100, rotation, "purple", 0.75);
+            drawSquare2(ctx, 350, 100, 100, 100, rotation, "purple", 1.0);
+            drawSquare2(ctx, 500, 300, 100, 100, rotation, "purple", 1.25);
+
+            // do some transformations?
+            ctx.save();
+            ctx.translate(100, 0);
+            ctx.rotate(rotation);
+            //ctx.scale(1.2,1.2);
+
+
+            // set a bunch of state attributes
+            ctx.shadowOffsetX = 15;
+            ctx.shadowOffsetY = 15;
+            ctx.shadowColor = "rgba(153,50,204,.6)";
+            ctx.shadowBlur = 5;
+
+
+            // // draw square with fillRect() convenience method
+            // ctx.fillStyle = "green";
+            // ctx.fillRect(100, 100, 100, 100);
+            // ctx.restore();
+
+            // // draw square with rect()
+            // ctx.fillStyle = "blue";
+            // ctx.beginPath();
+            // ctx.rect(300, 100, 100, 100);
+            // ctx.closePath();
+            // ctx.fill();
+
+            // draw squares with our helper function
+            drawSquare1(ctx, 100, 0, 100, 100, "orange");
+            drawSquare1(ctx, 250, 0, 100, 100, "orange");
+            drawSquare1(ctx, 400, 0, 100, 100, "orange");
+
+            // draw a (bad) triangle
+            ctx.strokeStyle = "pink";
+            ctx.fillStyle = "green";
+            ctx.lineWidth = "5";
+            ctx.beginPath();
+            ctx.moveTo(500, 100);
+            ctx.lineTo(550, 200);
+            ctx.lineTo(450, 200);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+
+            ctx.restore()
+        }
+
+
+
+
+        function drawSquare1(ctx, x, y, width, height, fillStyle) {
+            ctx.save();
+            ctx.fillStyle = fillStyle;
+            ctx.fillRect(x, y, width, height);
+            ctx.restore();
+        }
+
+        function drawSquare2(ctx, x, y, width, height, rotation, fillStyle, scale) {
+            ctx.save() // save the old state attribute
+            ctx.fillStyle = fillStyle;
+            ctx.translate(x, y)
+            ctx.rotate(rotation);
+            ctx.scale(scale, scale)
+            // now we'll draw from the center to get the rotation right
+            ctx.fillRect(0 - width / 2, 0 - height / 2, width, height);
+            ctx.restore();
+
+        }
+
+        function drawTriangle(ctx, x, y, x1, y1, x2, y2, x3, y3, rotation, lineWidth, fillStyle) {
+            ctx.save();
+            ctx.scale(1.0, 1.0)
+            ctx.translate(x, y)
+            ctx.rotate(rotation)
+            ctx.strokeStyle = "pink";
+            ctx.fillStyle = fillStyle;
+            ctx.lineWidth = lineWidth;
+            ctx.beginPath()
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.lineTo(x3, y3);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        // Draw a translating rectangle 
+          function rectTranslateMove(ctx, x, y, speedX, speedY, width, height, lineWidth){
+              ctx.save(); // save this instance of the state
+              ctx.fillStyle = "coral";
+              ctx.strokeStyle = "darkred";
+              ctx.lineWidth = lineWidth;
+              x += speedX // increase x by speedX amount
+              y += speedY // increase y by sspeedY amount
+              ctx.translate(x, y) // update the x and y position to move across the canvas
+
+              if(x > ctx.canvas.width + 10){
+                x = -width // set the x position back to the starting point
+                translateSpeedX = 0 // reset the speed
+              } else if (y > ctx.canvas.height + 20){
+                y = -height; // set y position of rect back to the starting point
+                translateSpeedY = 0 // reset the speed
+              }
+              ctx.fillRect(0, 0, width, height); // draw our filled rect
+              ctx.strokeRect(0, 0, width, height) // draw the stroke of our rect
+              ctx.restore(); // restore our recently saved state
+          } 
+    </script>
+</body>
+
+</html>
