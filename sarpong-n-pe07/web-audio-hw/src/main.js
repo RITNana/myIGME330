@@ -15,7 +15,7 @@ const DEFAULTS = Object.freeze({
 	sound1  :  "media/New Adventure Theme.mp3"
 });
 
-function init(){
+const init = () => {
   audio.setupWebaudio(DEFAULTS.sound1);
 	console.log("init called");
 	console.log(`Testing utils.getRandomColor() import: ${utils.getRandomColor()}`);
@@ -24,12 +24,12 @@ function init(){
   loop()
 }
 
-function setupUI(canvasElement){
+const setupUI = (canvasElement) => {
   // A - hookup fullscreen button
-  const fsButton = document.querySelector("#fsButton");
+  const fsButton = document.querySelector("#btn-fs");
 	
   // add .onclick event to button 
-  playButton.onclick = e =>{
+  btnplay.onclick = e =>{
     console.log(`audioCtx.state before = ${audio.audioCtx.state}`);
 
     // check if context is in suspended state (autoplay policy)
@@ -53,8 +53,8 @@ function setupUI(canvasElement){
   };
 
   // B - hookup volume slider and label
-  let volumeSlider = document.querySelector("#volumeSlider");
-  let volumeLabel = document.querySelector("#volumeLabel");
+  let volumeSlider = document.querySelector("#slider-volume");
+  let volumeLabel = document.querySelector("#label-volume");
 
   // add .oninput to slider
   volumeSlider.oninput = e => {
@@ -68,13 +68,13 @@ function setupUI(canvasElement){
   volumeSlider.dispatchEvent(new Event("input"));
 
   // C - hook up track <select>
-  let trackSheet = document.querySelector("#trackSelect");
+  let trackSheet = document.querySelector("#select-track");
   // add .onchange event to <select>
   trackSheet.onchange = e => {
     // pause the current track if it is playing
     audio.loadSoundFile(e.target.value);
-    if(playButton.dataset.playing == "yes"){
-      playButton.dispatchEvent(new MouseEvent("click"));
+    if(btnplay.dataset.playing == "yes"){
+      btnplay.dispatchEvent(new MouseEvent("click"));
     }
   };
 
@@ -82,7 +82,7 @@ function setupUI(canvasElement){
 	
 } // end setupUI
 
-function loop(){
+const loop = () => {
   /* NOTE: This is temporary testing code that we will delete in Part II */
     requestAnimationFrame(loop);
     // 1) create a byte array (values of 0-255) to hold the audio data

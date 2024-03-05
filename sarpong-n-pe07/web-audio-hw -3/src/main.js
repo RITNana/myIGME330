@@ -20,13 +20,19 @@ let drawParams = {
   showEmboss: false
 };
 
+let highshelf = false;
+let biquadFilter = audio.biquadFilter
 
-let gradientCb = document.querySelector("#gradientCB");
-let barsCb = document.querySelector("#barsCB");
-let circlesCb = document.querySelector("#circlesCB");
-let noiseCb = document.querySelector("#noiseCB");
-let invertCb = document.querySelector("#invertCB");
-let embossCb = document.querySelector("#embossCB");
+
+let gradientCb = document.querySelector("#cb-gradient");
+let barsCb = document.querySelector("#cb-bars");
+let circlesCb = document.querySelector("#cb-circles");
+let noiseCb = document.querySelector("#cb-noise");
+let invertCb = document.querySelector("#cb-invert");
+let embossCb = document.querySelector("#cb-emboss");
+
+
+
 
 
 
@@ -35,7 +41,7 @@ const DEFAULTS = Object.freeze({
   sound1: "media/New Adventure Theme.mp3"
 });
 
-function init() {
+const init = () => {
   gradientCb.checked = true;
   barsCb.checked = true;
   circlesCb.checked = true;
@@ -52,12 +58,21 @@ function init() {
   loop()
 }
 
-function setupUI(canvasElement) {
+const setupUI = (canvasElement) => {
+  // I. set the initial state of the high shelf checkbox
+  document.querySelector('#cb-highshelf').checked = highshelf; // `highshelf` is a boolean we will declare in a second
+
+  // II. change the value of `highshelf` every time the high shelf checkbox changes state
+  document.querySelector('#cb-highshelf').onchange = e => {
+    highshelf = e.target.checked;
+    toggleHighshelf(); // turn on or turn off the filter, depending on the value of `highshelf`!
+  };
+
   // A - hookup fullscreen button
-  const fsButton = document.querySelector("#fsButton");
+  const fsButton = document.querySelector("#btn-fs");
 
   // add .onclick event to button 
-  playButton.onclick = e => {
+  btnplay.onclick = e => {
     console.log(`audioCtx.state before = ${audio.audioCtx.state}`);
 
     // check if context is in suspended state (autoplay policy)
@@ -81,8 +96,8 @@ function setupUI(canvasElement) {
   };
 
   // B - hookup volume slider and label
-  let volumeSlider = document.querySelector("#volumeSlider");
-  let volumeLabel = document.querySelector("#volumeLabel");
+  let volumeSlider = document.querySelector("#slider-volume");
+  let volumeLabel = document.querySelector("#label-volume");
 
   // add .oninput to slider
   volumeSlider.oninput = e => {
@@ -96,13 +111,13 @@ function setupUI(canvasElement) {
   volumeSlider.dispatchEvent(new Event("input"));
 
   // C - hook up track <select>
-  let trackSheet = document.querySelector("#trackSelect");
+  let trackSheet = document.querySelector("#select-track");
   // add .onchange event to <select>
   trackSheet.onchange = e => {
     // pause the current track if it is playing
     audio.loadSoundFile(e.target.value);
-    if (playButton.dataset.playing == "yes") {
-      playButton.dispatchEvent(new MouseEvent("click"));
+    if (btnplay.dataset.playing == "yes") {
+      btnplay.dispatchEvent(new MouseEvent("click"));
     }
   };
 
@@ -160,13 +175,19 @@ function setupUI(canvasElement) {
       canvas.draw(drawParams.showEmboss = false)
     }
   })
-
-
-
 } // end setupUI
 
+function toggleHighshelf(){
+  if(highshelf == true){
+    biquadFilter.frequency.setValueAtTime(1000, audioCtx.currentTime); // we created the `biquadFilter` (i.e. "treble") node last time
+    biquadFilter.gain.setValueAtTime(25, audioCtx.currentTime);
+  }else{
+    biquadFilter.gain.setValueAtTime(0, audioCtx.currentTime);
+  }
+}
 
-function loop() {
+
+const loop = () => {
   requestAnimationFrame(loop);
   canvas.draw(drawParams)
 

@@ -1,3 +1,7 @@
+*{font-family:sans-serif;}
+span{margin-right:2em;}
+#slider-distortion{position:relative;top:.7em;}
+
 body {
     background: #eeeeee;
     font-family: tahoma, verdana, sans serif;
@@ -23,7 +27,7 @@ body {
     margin-bottom: 1rem;
   }
   
-  #playButton{
+  #btnplay{
     font-size: 1.2rem;
     width: 6rem;
   }
@@ -36,7 +40,7 @@ body {
     content: "Play";
   }
   
-  #fsButton{
+  #btn-fs{
     font-size: 1.2rem;
     width: 8rem;
   }

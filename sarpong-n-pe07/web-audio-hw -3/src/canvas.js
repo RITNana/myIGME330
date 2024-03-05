@@ -13,7 +13,7 @@ let ctx, canvasWidth, canvasHeight, gradient, analyserNode, audioData;
 
 
 
-function setupCanvas(canvasElement, analyserNodeRef) {
+const setupCanvas = (canvasElement, analyserNodeRef) => {
     // create drawing context
     ctx = canvasElement.getContext("2d");
     canvasWidth = canvasElement.width;
@@ -29,7 +29,7 @@ function setupCanvas(canvasElement, analyserNodeRef) {
     
 }
 
-function draw(params = {}) {
+const draw = (params = {}) => {
     // 1 - populate the audioData array with the frequency data from the analyserNode
     // notice these arrays are passed "by reference" 
     //	analyserNode.getByteFrequency(audioData)

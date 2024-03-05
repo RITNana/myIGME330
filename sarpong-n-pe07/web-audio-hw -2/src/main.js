@@ -19,9 +19,9 @@ const drawParams = {
 };
 
 
-let gradientCb = document.querySelector("#gradientCB")
-let barsCb = document.querySelector("#barsCB")
-let circlesCb = document.querySelector("#circlesCB")
+let gradientCb = document.querySelector("#cb-gradient")
+let barsCb = document.querySelector("#cb-bars")
+let circlesCb = document.querySelector("#cb-circles")
 
 
 // 1 - here we are faking an enumeration
@@ -29,7 +29,7 @@ const DEFAULTS = Object.freeze({
 	sound1  :  "media/New Adventure Theme.mp3"
 });
 
-function init(){
+const init = () => {
   gradientCb.checked = true;
   barsCb.checked = true;
   circlesCb.checked = true;
@@ -42,12 +42,12 @@ function init(){
   loop()
 }
 
-function setupUI(canvasElement){
+const setupUI = (canvasElement) => {
   // A - hookup fullscreen button
-  const fsButton = document.querySelector("#fsButton");
+  const fsButton = document.querySelector("#btn-fs");
 	
   // add .onclick event to button 
-  playButton.onclick = e =>{
+  btnplay.onclick = e =>{
     console.log(`audioCtx.state before = ${audio.audioCtx.state}`);
 
     // check if context is in suspended state (autoplay policy)
@@ -71,7 +71,7 @@ function setupUI(canvasElement){
   };
 
   // B - hookup volume slider and label
-  let volumeSlider = document.querySelector("#volumeSlider");
+  let volumeSlider = document.querySelector("#slider-volume");
   let volumeLabel = document.querySelector("#volumeLabel");
 
   // add .oninput to slider
@@ -86,13 +86,13 @@ function setupUI(canvasElement){
   volumeSlider.dispatchEvent(new Event("input"));
 
   // C - hook up track <select>
-  let trackSheet = document.querySelector("#trackSelect");
+  let trackSheet = document.querySelector("#select-track");
   // add .onchange event to <select>
   trackSheet.onchange = e => {
     // pause the current track if it is playing
     audio.loadSoundFile(e.target.value);
-    if(playButton.dataset.playing == "yes"){
-      playButton.dispatchEvent(new MouseEvent("click"));
+    if(btnplay.dataset.playing == "yes"){
+      btnplay.dispatchEvent(new MouseEvent("click"));
     }
   };
 
@@ -128,7 +128,7 @@ circlesCb.addEventListener("change", () => {
 } // end setupUI
 
 
-function loop(){
+const loop = () => {
     requestAnimationFrame(loop);
     canvas.draw(drawParams)
   }
