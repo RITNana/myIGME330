@@ -10,6 +10,8 @@
 import * as utils from './utils.js';
 import * as audio from './audio.js';
 import * as canvas from './canvas.js';
+import * as json from './json.js';
+
 
 let drawParams = {
   showGradient: true,
@@ -17,11 +19,14 @@ let drawParams = {
   showCircles: true,
   showNoise: false,
   showInvert: false,
-  showEmboss: false
+  showEmboss: false,
+  toggleWave: false
 };
 
 let highshelf = false;
-let biquadFilter = audio.biquadFilter
+let lowshelf = false;
+
+
 
 
 let gradientCb = document.querySelector("#cb-gradient");
@@ -30,9 +35,8 @@ let circlesCb = document.querySelector("#cb-circles");
 let noiseCb = document.querySelector("#cb-noise");
 let invertCb = document.querySelector("#cb-invert");
 let embossCb = document.querySelector("#cb-emboss");
-
-
-
+let trebleBox = document.querySelector("#cb-highshelf");
+let bassBox = document.querySelector("#cb-lowshelf");
 
 
 
@@ -41,6 +45,7 @@ const DEFAULTS = Object.freeze({
   sound1: "media/New Adventure Theme.mp3"
 });
 
+// what will be loaded onto our window on default
 const init = () => {
   gradientCb.checked = true;
   barsCb.checked = true;
@@ -48,6 +53,12 @@ const init = () => {
   noiseCb.checked = false;
   invertCb.checked = false;
   embossCb.checked = false;
+ 
+// setting the checks to not be checked yet
+  trebleBox.checked = highshelf;
+  bassBox.checked = lowshelf;
+
+  json.loadJSON();
 
   audio.setupWebaudio(DEFAULTS.sound1);
   console.log("init called");
@@ -59,15 +70,6 @@ const init = () => {
 }
 
 const setupUI = (canvasElement) => {
-  // I. set the initial state of the high shelf checkbox
-  document.querySelector('#cb-highshelf').checked = highshelf; // `highshelf` is a boolean we will declare in a second
-
-  // II. change the value of `highshelf` every time the high shelf checkbox changes state
-  document.querySelector('#cb-highshelf').onchange = e => {
-    highshelf = e.target.checked;
-    toggleHighshelf(); // turn on or turn off the filter, depending on the value of `highshelf`!
-  };
-
   // A - hookup fullscreen button
   const fsButton = document.querySelector("#btn-fs");
 
@@ -175,14 +177,50 @@ const setupUI = (canvasElement) => {
       canvas.draw(drawParams.showEmboss = false)
     }
   })
+
+  // event handler for trebleBox checking to see if the checbox has been clicked by input
+  trebleBox.onchange = e =>{
+    highshelf = e.target.checked;
+    toggleHighshelf()
+  }
+
+  // event handler for bassBox checking to see if the checbox has been clicked by input
+  bassBox.onchange = e =>{
+    lowshelf = e.target.checked;
+    toggleLowshelf();
+  }
+
+  // changing the data being displayed
+  document.querySelector("#change-data").onchange = e => {
+    if(e.target.value == "frequency"){
+      drawParams.toggleWave = false ;
+    } else {
+      drawParams.toggleWave = true;
+    }
+  }
+
+
+
+  
 } // end setupUI
 
+// creating the treble node
 function toggleHighshelf(){
-  if(highshelf == true){
-    biquadFilter.frequency.setValueAtTime(1000, audioCtx.currentTime); // we created the `biquadFilter` (i.e. "treble") node last time
-    biquadFilter.gain.setValueAtTime(25, audioCtx.currentTime);
+  if(highshelf){
+    audio.highBiquadFilter.frequency.setValueAtTime(1000, audio.audioCtx.currentTime); 
+    audio.highBiquadFilter.gain.setValueAtTime(20, audio.audioCtx.currentTime);
   }else{
-    biquadFilter.gain.setValueAtTime(0, audioCtx.currentTime);
+    audio.highBiquadFilter.gain.setValueAtTime(0, audio.audioCtx.currentTime);
+  }
+}
+
+// creating the bass node
+function toggleLowshelf(){
+  if(lowshelf){
+    audio.lowBiquadFilter.frequency.setValueAtTime(1000, audio.audioCtx.currentTime); // we created the `biquadFilter` (i.e. "treble") node last time
+    audio.lowBiquadFilter.gain.setValueAtTime(10, audio.audioCtx.currentTime);
+  }else{
+    audio.lowBiquadFilter.gain.setValueAtTime(0, audio.audioCtx.currentTime);
   }
 }
 

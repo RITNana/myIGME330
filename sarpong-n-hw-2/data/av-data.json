@@ -1,0 +1,10 @@
+{
+    "title": "Amazingly Annoying Music :D",
+    "audioFiles":[
+        "New Adventure Theme",
+        "Peanuts Theme",
+        "The Picard Song"
+
+    ],
+    "instructions": "Go ahead and alter the audio through the Treble and Bass nodes, along with changing the type of audiograph being shown"
+}
