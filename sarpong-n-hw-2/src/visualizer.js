@@ -8,9 +8,10 @@
 */
 
 import * as utils from './utils.js';
+import {Sprite} from './sprite.js';
 
 let ctx, canvasWidth, canvasHeight, gradient, analyserNode, audioData;
-
+let sprite;
 
 
 const setupCanvas = (canvasElement, analyserNodeRef) => {
@@ -18,6 +19,7 @@ const setupCanvas = (canvasElement, analyserNodeRef) => {
     ctx = canvasElement.getContext("2d");
     canvasWidth = canvasElement.width;
     canvasHeight = canvasElement.height;
+    console.log(canvasWidth, canvasHeight)
     // create a gradient that runs top to bottom
     gradient = utils.getLinearGradient(ctx, 0, 0, 0, canvasHeight, [{ percent: 0, color: "#645DD7" }, { percent: .25, color: "#B3FFFC" }, { percent: .5, color: "#FB62F6" }, { percent: .75, color: "#FF4242" }, { percent: 1, color: "#F2FF49" }]);
     // keep a reference to the analyser node
@@ -25,7 +27,14 @@ const setupCanvas = (canvasElement, analyserNodeRef) => {
     // this is the array where the analyser data will be stored
     audioData = new Uint8Array(analyserNode.fftSize / 2)
     
+    const image = new Image();
+    image.src = "images/pacman_state1.png"
 
+image.onload = () => {
+    sprite = new Sprite(400, 400, 300, 300, "");
+    console.log(typeof sprite.image);
+}
+    
     
 }
 
@@ -37,10 +46,6 @@ const draw = (params = {}) => {
     } else {
         analyserNode.getByteFrequencyData(audioData);
     } 
-    //	analyserNode.getByteFrequencyData(audioData)
-    // OR
-  //  analyserNode.getByteTimeDomainData(audioData); // waveform data
-
     // 2 - draw background
         ctx.save();
         ctx.fillStyle = "black";
@@ -48,8 +53,6 @@ const draw = (params = {}) => {
         ctx.fillRect(0, 0, canvasWidth, canvasHeight);
         ctx.restore();
     
-   
-
     // 3 - draw gradient
         if (params.showGradient) {
             ctx.save();
@@ -58,10 +61,7 @@ const draw = (params = {}) => {
             ctx.fillRect(0, 0, canvasWidth, canvasHeight);
             ctx.restore();
     }
-   
-
-
-    
+       
     // 4 - draw bars
     if(params.showBars){
         let barSpacing = 4;
@@ -114,6 +114,10 @@ const draw = (params = {}) => {
             ctx.fill();
             ctx.closePath();
             ctx.restore();
+
+            if(params.showSprite){
+               // sprite.draw(ctx);
+            }
         }
         ctx.restore();
     }

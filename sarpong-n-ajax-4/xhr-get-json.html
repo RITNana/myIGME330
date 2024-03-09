@@ -39,9 +39,9 @@
                 console.log(`In onload - HTTP Status Code = ${e.target.status}`);
                 let json;
 
-                try{
-                    // targeting the retrieved JSON data from the XML request
+                try{// targeting the retrieved JSON data from the XML request
                 // declare and intialize a variable to parse, or convert, JSON string into an object
+                    
                  json = JSON.parse(e.target.responseText);
                 } catch{
                     // if json parsing fails, display message on page and exit out

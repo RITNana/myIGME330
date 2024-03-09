@@ -9,8 +9,9 @@
 
 import * as utils from './utils.js';
 import * as audio from './audio.js';
-import * as canvas from './canvas.js';
-import * as json from './json.js';
+import * as canvas from './visualizer.js';
+//import * as json from './json.js';
+
 
 
 let drawParams = {
@@ -20,7 +21,8 @@ let drawParams = {
   showNoise: false,
   showInvert: false,
   showEmboss: false,
-  toggleWave: false
+  toggleWave: false,
+  showSprite: true
 };
 
 let highshelf = false;
@@ -58,7 +60,7 @@ const init = () => {
   trebleBox.checked = highshelf;
   bassBox.checked = lowshelf;
 
-  json.loadJSON();
+ // json.loadJSON();
 
   audio.setupWebaudio(DEFAULTS.sound1);
   console.log("init called");
