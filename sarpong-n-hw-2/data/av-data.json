@@ -1,10 +1,10 @@
 {
-    "title": "Amazingly Annoying Music :D",
+    "title": "AudioVisualizer - Better Version :)",
     "audioFiles":[
         "New Adventure Theme",
         "Peanuts Theme",
         "The Picard Song"
 
     ],
-    "instructions": "Go ahead and alter the audio through the Treble and Bass nodes, along with changing the type of audiograph being shown"
+    "instructions": "Click on the Play Button to go through a variety of song choices, and apply the two filters to see how the sounds differ from their original pitch. Use the sliders to change the differenmt filter levels"
 }

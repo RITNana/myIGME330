@@ -61,7 +61,6 @@ const setupWebaudio = (filePath) => {
     gainNode.gain.value = DEFAULTS.gain
 
     // 8 - connect the nodes - we now have an audio graph
-   // sourceNode.connect(analyserNode);
    sourceNode.connect(highBiquadFilter)
    highBiquadFilter.connect(lowBiquadFilter);
    lowBiquadFilter.connect(analyserNode)
@@ -87,5 +86,6 @@ const setVolume = (value) => {
     value = Number(value); // make sure that it's a Number rather than a String
     gainNode.gain.value = value;
 }
+
 
 export { audioCtx, setupWebaudio, playCurrentSound, pauseCurrentSound, loadSoundFile, setVolume, analyserNode, highBiquadFilter, lowBiquadFilter};
