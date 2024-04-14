@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" class = "has-background-primary-light">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Anime Schedule Finder</title>
+<!--	<link href="styles/main.css" rel=stylesheet> -->
+	<script src="./js/loader.js" type="module"></script>
+	
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Skranji&family=Tilt+Neon&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+	<link rel="manifest" href="favicon_io/site.webmanifest">
+
+	<style>
+		body,
+		a,
+		a:hover {
+			cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAtdJREFUWEfFls9r02AYx583iU2TtKgtQ9AhEytsILjDxL+hF2HUuoi6dhM8zJsHrx4HKoKUTq20RFtxUnbyUKl/gT0pXjbQoxfphM6t3Zofr7xZ35q0SW1rWnNpQ96838/zfX68QTCmKx5fCRhs/ReRC/pBUBRln/xH49CPyUnsoKNvrCvcyAFkefmkCsZ3AuAXxDgAkhAChdwfnJ7gRw5Ao5ek4KVX2VSFCF9fupOgEGMDEMTgbCGX+nwIsHIFIVQcSw28L3/AL3KvQRAlAGBmMav7kI5MJ2qcKo3UgVKphEPhMDx4vNYCsJdiIZdGIwP4WKngn9vbpuL0zAzUajvw6Mlz817n1Ik3mUx1ZCkol8uGFAggVVWhUa+bAGemphyD9dwBajuJnghXq1W4ODfnquMpALX9eCgE+40GnJqcNM5FImyvYecJQExe2gPA4r27K6YWjd7NdivQUAAxOakBgGNkD1fvw9bmJkSj0b727mvR/OJimGkyZtVaL78gAmo1UqO+12410l79njF9LbQeJocDxX5ZxQFgp5BLH/UMICYnDXJqEuEOIWg06gAY24bMINH/dQ4s3Fi+oGnGJ7KQArAsBz6eNwMkQIAQCILYDthTAGr9ER8PHMe1RQmErmuu47Vf+3s6sJC4fVY7aH6l0Vs3JZFbnWg/Q7BbyKaDngDQ6Hm/AAzDtPekdeAEMaj9rg7EriWuAkZved4PDPun3buKkNRAqz7Ir3cArW84a8t1inemhKz1BGD+5q3zjKp/8fl4YC2F59T/FAJjDM1d7VixmKkNkn/HFNDcm23n0OcOAkYhl+554PSC6pqENgCHPrdvZkwXck+3Bo3aut4G0CnuZjtS9RP5/LMf/yJM33UEcOp9M18IX85n1955IdwF0OvAYTkm8jKT+ualsCuA1fZh2mpQSDMF1twPO1AGFbY5QAE21pW+vg+GFXN6DxHx/yFMYX4D2L0V/ugrFWYAAAAASUVORK5CYII=) 0 0, default;
+		}
+	</style>
+
+</head>
+
+<body>
+	<nav class="navbar has-background-warning">
+		<!-- logo / brand -->
+		<div class="navbar-brand">
+			<a class="navbar-item" href="about.html">
+				<i class="fas fa-user-ninja"></i>
+			  </a>
+		  <a class="navbar-burger" id="burger">
+			<span></span>
+			<span></span>
+			<span></span>
+		  </a>
+		</div>
+	
+	
+	
+		<div class="navbar-menu" id="nav-links">
+		  <div class="navbar-start">
+			<a class="navbar-item is-hoverable" href = "about.html">
+			  Home
+			</a>
+	
+			<a class="navbar-item is-hoverable" href="index.html">
+			  App
+			</a>
+	
+	
+			<a class="navbar-item is-hoverable" href="doc.html">
+			  Documentation
+			</a>
+		  </div> <!-- end navbar-start -->
+		</div>
+	  </nav>
+	
+
+	<a href="doc.html" class="tag is-link">Link to Documentation</a>
+	<header>
+		<section class="section has-text-centered">
+		<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-danger-dark px-s6" >Anime Finder</h1>
+		</section>
+		<!---<img id="itachi" src="images/anime-naruto.gif" alt="Itachi">
+		<img id="kyuubi" src="images/kyuubi.gif" alt="Naruto Kyuubi Mode">
+		<img id="ichigo" src="images/bleach.gif" alt="Ichigo">
+		<img id="luffy" src="images/one_piece.gif" alt="Luffy">
+		<img id="sasuke" src="images/sasuke.gif" alt="Sasuke">
+		<img id="goku" src="images/ssb_goku.gif" alt="SSB Goku"> -->
+
+
+
+	</header>
+
+	
+
+	<section class="mainsearch">
+		<p class = "has-text-danger has-text-weight-bold p-2">Search Term (Enter an anime) -&gt; <input id="searchterm" type="text" size="20" maxlength="20" /></p>
+		<div class="has-text-danger has-text-weight-bold p-2">
+			Max # results ->
+			<select id="limit">
+				<option value="">Select a Number</option>
+				<option value="5">5</option>
+				<option value="10">10</option>
+				<option value="25">25</option>
+
+
+			</select>
+		</div>
+		<p><button type="button" id="search" class="button is-warning m-2">Search!</button></p>
+
+
+
+
+		<div class="has-text-danger has-text-weight-bold p-2">
+			Filter by Genre ->
+			<select id="genre">
+				<option value="">Select a Genre</option>
+				<option value="1">Action</option>
+				<option value="2">Adventure</option>
+				<option value="51">Anthropormorphic</option>
+				<option value="4">Comedy</option>
+				<option value="8">Drama</option>
+				<option value="10">Fantasy</option>
+				<option value="58">Gore</option>
+				<option value="47">Gourmet</option>
+				<option value="14">Horror</option>
+				<option value="7">Mystery</option>
+				<option value="22">Romance</option>
+				<option value="42">Seinen</option>
+				<option value="27">Shounene</option>
+				<option value="24">Sci-Fi</option>
+				<option value="36">Slice of Life</option>
+				<option value="30">Sports</option>
+				<option value="37">Supernatural</option>
+				<option value="41">Suspense</option>
+
+			</select>
+		</div>
+
+
+		<div class="has-text-danger has-text-weight-bold p-2">
+			Filter by Days ->
+			<select id="filter">
+				<option value="">Select a Day</option>
+				<option value="Monday">Monday</option>
+				<option value="Tuesday">Tuesday</option>
+				<option value="Wednesday">Wednesday</option>
+				<option value="Thursday">Thursday</option>
+				<option value="Friday">Friday</option>
+				<option value="Unknown">Unknown</option>
+				<option value="Other">Other</option>
+
+			</select>
+		</div>
+	</section>
+
+	<p id="debug"></p>
+	<h2 class = "has-text-danger has-text-weight-bold p-2">Results</h2>
+
+	<div id="content" class = "has-text-danger has-text-weight-bold p-2">
+		<p>No data yet!</p>
+	</div>
+
+	<section class="section">
+		<div class="container">
+		<div class="columns is-multiline">
+			<div class="column is-one-fifth">
+
+			</div>
+		</div>
+			</div>
+		</div>
+	</section>
+	
+
+
+
+	<script src = "js/hamburger.js"></script>
+</body>
+
+</html>

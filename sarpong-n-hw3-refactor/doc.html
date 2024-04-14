@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation for Project 2</title>
+
+    <style>
+        body {
+            background-color: #AFE0CE;
+        }
+
+        header {
+            font-size: 50px;
+        }
+
+        h1 {
+            background-color: yellow;
+            text-align: left;
+            margin-right: 1200px
+        }
+
+        p {
+            line-height: 20px;
+        }
+
+        ol{
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>Project 2 Documentation</header>
+    <h1>How To Instructions:</h1>
+    <ol>
+        <p> If searching by Manual</p>
+        <li>Type in anime name</li>
+        <li>Select max number of results you wish to have</li>
+        <li>Click Search</li>
+        <li>Hover over the anime image to see the rating and sypnosis</li>
+        <li>For more info, scroll down in description box and click the link</li>
+    </ol>
+
+    <ol>
+        <p> If searching by Schedule</p>
+        <li>Select your choice of Day for anime schedule</li>
+        <li>Your search wil happen automatically</li>
+        <li>Hover over the anime image to see the rating and sypnosis</li>
+        <li>For more info, scroll down in description box and click the link</li>
+    </ol>
+
+    <ol>
+        <p> If searching by Genre</p>
+        <li>Select your preference of Genre </li>
+        <li>Your search wil happen automatically</li>
+        <li>Hover over the anime image to see the rating and sypnosis</li>
+        <li>For more info, scroll down in description box and click the link</li>
+    </ol>
+
+    <hr>
+
+    <p>I knew that it would take me a while to figure out how to use the API in order for me to code and display, <br>
+        so I focused more on the HTML and JS for this project first, andd delt with the CSS last.
+        <br>
+        Originally, I had to update the API URL that was used for the Jikan UnOfficial MyAnimeList because it was
+        outdated. <br>
+        It actually took longer than expected to find the API URL for this API, until I realized there were multiple
+        ones to choose from, <br> by the documentation. I decided to use two API URLs in my project because the
+        getAnimeSearch and getSchedules
+        both had similar, <br>
+        yet different parameters that I needed for both in order for my website to work.
+    </p>
+
+    <p>One of the challenges I faced was getting my API for the genres, although there was an actual genre API,
+        <br>
+        it didn't allow me to see the specific animes associated with that genre, nor was I able to set any query
+        parameters. <br>
+        I decided to use the first API for the anime search and used the 'genres' query parameter to filter out the
+        animes
+        by genre. <br>
+        I moved on to the CSS, where the hard part was figuring out how to display the information. I had gotten an
+        idea from one of <br>
+        my classmates' example where they put the information of each anime into its own box that would dropdown with
+        click,<br>
+        so I decided to create a div in my string templating and added the :hover pseudo class, <br>
+        which lowered the opacity of the image and displayed the information when you hover over each anime result. <br>
+        The CSS, the GIFs, and the custom cursor all came after, which took some Youtube tutorials and attempts to
+        accomplish.
+    </p>
+
+    <p>I meet the requirements by saving a search term to the localStroage of my website, adding an additional DOM
+        element <br>
+        feature that allows the user to search for animes by Genre by a select pulldown, and had the correct coding
+        conventiosn for my JS, <br>
+        valid HTML, and valid CSS. I believe I do deserve an "A" because this project I actually had time to add
+        additional features such as <br>
+        the custom cursor and a favicon for my Anime Finder Website. I can understand how I may get a "B" because the
+        layout of my site is very <br>
+        similar to the GIF Finder, but I did incorporate my own styling and additional features pertained to this
+        specific API. </p>
+
+    <p> Sources</p>
+    <footer>
+        <ul>
+            <li> <a href="https://tenor.com/search/naruto-sprite-gifs" >Sprites for Project</a></li>
+            <li><a href="https://coolors.co/f3b700-d3fad6-00a1e4-ff6201-f63e02">Color Palette</a></li>
+            <li><a
+                    href="https://www.google.com/search?q=cursor+generator&rlz=1C1UEAD_enUS1038US1038&sourceid=chrome&ie=UTF-8" >Cursor
+                    Generator Results</a></li>
+            <li> <a href="https://www.veed.io/edit/edafd521-2bbc-47d3-a978-6984a26864ef/video" >GIF Sprites for
+                    Project</a></ol>
+            <li> <a href="https://favicon.io/" >Favicon Generator</a></li>
+            <li><a href = "https://docs.api.jikan.moe/#tag/anime/operation/getAnimeSearch" ></a>>Jikan Docs</a></li>
+            <li><a href = "https://jikan.moe/">Jikan API Website</a></li>
+        </ul>
+        	<div style="font-size: 16px;">Cursor created with <a
+		href="http://profilki.pl/en/generators/cursor-generator">profilki.pl</a></div> 
+    </footer>
+</body>
+
+</html>
