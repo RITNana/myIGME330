@@ -1,0 +1,16 @@
+II. Tell us about the 2 Audio Effect nodes you added to the audio routing graph.
+ The two audio effects I added were the treble and bass nodes for obtaining different pitches for the audios
+
+III. Tell us your Sprite's class name, what it looks like/what it does in the visualization
+My Sprite class name is called Sprite, but what it does is peridoically animate and scale multiuple rectangles
+based on the audio data. 
+
+IV. Tell us what app data you put in your av-data.json file
+The app data I put in my JSON file was the title and the filenames of the songs. I also added app instructions
+
+V. Tell us how you improved the aesthetics of the app over the AV HW:
+be sure to give yourself a grade for this section, between 0% and 15%
+
+5%, The only main differences I did was take out the gradient and made all the checkboxes for the effects become sliders. 
+Although this allows the control to better for the user, there is not much after that. The animation of the rectangles are creative
+and intriguing, so I would say that is where i was able to contribute some aesthetic to this visualizer. 

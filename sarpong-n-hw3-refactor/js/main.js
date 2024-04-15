@@ -29,11 +29,11 @@ const init = () => {
     document.querySelector("#genre").addEventListener("change", function () {
         options.getGenres(); // Call the function to fetch data based on the selected genre
 
-        if (options.getGenres()) {
+       
             document.querySelector("#searchterm").value = ""; // clear search field
             document.querySelector("#limit").value = ""; // clear limit selection
             document.querySelector("#filter").value = ""; // clear genre selection
-        }
+        
     });
 
 

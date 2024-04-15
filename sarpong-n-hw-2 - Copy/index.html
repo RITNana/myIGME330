@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Audio Visualizer</title>
+  <link href="./styles/default-styles.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+ <!--- <script src="./src/loader.js" type="module"></script> -->
+
+  
+
+</head>
+<body>
+
+  <nav class="navbar has-shadow is-danger">
+    <!-- logo / brand -->
+    <div class="navbar-brand">
+      <a class="navbar-burger" id="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+
+
+
+    <div class="navbar-menu" id="nav-links">
+      <div class="navbar-start">
+        <a class="navbar-item is-hoverable" href = "about.html">
+          Home
+        </a>
+
+        <a class="navbar-item is-hoverable" href="index.html">
+          App
+        </a>
+
+        <a class="navbar-item is-hoverable" href="documentation.txt">
+          Documentation
+        </a>
+      </div> <!-- end navbar-start -->
+    </div>
+  </nav>
+
+
+<main>
+  <canvas width="800" height="400"></canvas>
+  <div id="controls">
+    <section class = "box">
+      <button id="btnplay" data-playing="no" class = "button is-success is-dark"></button>
+      <button id="btn-fs" class = "button is-info is-dark">Full Screen</button>
+		
+      <label class = "tag is-warning p-5">Track: 
+        <select id="select-track">
+          <option value="media/New Adventure Theme.mp3" selected>New Adventure Theme</option>
+          <option value="media/Peanuts Theme.mp3">Peanuts Theme</option>
+          <option value="media/The Picard Song.mp3">The Picard Song</option>
+        </select>
+      </label>
+    </section>
+		
+    <section class = "box">
+      Volume: <input type="range" id="slider-volume" min="0" max="2" value="1" step="0.01">
+      <span id="label-volume">???</span>
+
+      Noise: <input type="range" id="slider-noise" min="0" max="1" step="0.1" value="0" />
+      Invert: <input type="range" id="slider-invert" min="0" max="1" step="0.1" value="0" />
+      Emboss: <input type="range" id="slider-emboss" min="0" max="1" step="0.1" value="0" />
+    </section>
+
+    <section>
+      <span><input type="checkbox" id="cb-bars"><label for="cb-bars">Show Bars</label></span>
+      <span><input type="checkbox" id="cb-circles"><label for="cb-circles">Show Circles</label></span>
+      <span><label for="cb-highshelf">Highshelf Filter (Treble)</label><input type="checkbox" id="cb-highshelf"></span>
+      <span><label for="cb-lowshelf">Lowshelf Filter (Bass)</label><input type="checkbox" id="cb-lowshelf"></span>
+    </section>
+
+  
+    
+    <select id = "change-data">
+      <option value = "frequency">Frequency Data</option>
+      <option value = "waveform">Waveform</option>
+    </select>
+  </div>
+
+  <div id = "output"></div>
+</main>
+<script src="dist/bundle.js"></script>
+<script src="./src/hamburger.js"></script>
+</body>
+</html>

@@ -21,6 +21,7 @@ export const getGenres = () => {
     // create a new XHR object
     let xhr = new XMLHttpRequest();
 
+
     //  set the onload handler
     xhr.onload = loaded.genreDataLoaded;
 

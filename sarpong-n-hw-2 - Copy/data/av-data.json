@@ -1,0 +1,10 @@
+{
+    "title": "AudioVisualizer - Better Version :)",
+    "audioFiles":[
+        "New Adventure Theme",
+        "Peanuts Theme",
+        "The Picard Song"
+
+    ],
+    "instructions": "Click on the Play Button to go through a variety of song choices, and apply the two filters to see how the sounds differ from their original pitch. Use the sliders to change the differenmt filter levels"
+}

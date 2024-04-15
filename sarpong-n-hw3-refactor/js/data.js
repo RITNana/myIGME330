@@ -5,13 +5,14 @@ export const genreDataLoaded = (e) => {
     let xhr = e.target;
 
 
-    // console.log(xhr.responseText);
+     console.log(xhr.responseText);
 
     // turn the text into a parsable JavaScript object
     let obj = JSON.parse(xhr.responseText);
 
     // set results equal to the data held in the JSON 
     let results = obj.data;
+    console.log(results)
 
     // console.log("results length: " + results.length);
 
@@ -39,13 +40,16 @@ export const genreDataLoaded = (e) => {
         if (!thumbnailURL) thumbnailURL = "images/no-image-found.png";
 
         // ES6 - String templating to hold our genre data 
-        let line = `<div class = 'result-container'>
+        let line = `
+        <div class="column is-one-fifth">
+        <div class = 'result-container'>
          <div class = 'result'> <img src = '${thumbnailURL}' alt = '${title}'/> </div>
          <p class='name'>  <a href='${genreURL}'>${title}</a></p>
          <div class = 'rating'>  <p> ${rating} </p> 
          <p> ${synopsis} </p> 
          <p class = 'nameLink'> <a href='${genreURL}' target = '_blank'>${title}</a> </p>
          </div>
+        </div>
         </div>`;
 
         // add this string templating line to our bigString
@@ -76,7 +80,7 @@ export const scheduleDataLoaded = (e) => {
 
     // if no results are found, display an error message for the specific anime name used
     if (!results) {
-        document.querySelector(".container").innerHTML = `<p><i>Problem! <b>No results for "${options.filter}"</b></i></p>`;
+        document.querySelector("#debug").innerHTML = `<p><i>Problem! <b>No results for "${options.filter}"</b></i></p>`;
         return;
     }
 
@@ -94,13 +98,16 @@ export const scheduleDataLoaded = (e) => {
         if (!thumbnailURL) thumbnailURL = "images/no-image-found.png"; // if there is no image found, show the 'no image' picture
 
         // ES6 String templating to display the schedule data
-        let line = `<div class = 'result-container'>
+        let line = `
+        <div class="column is-one-fifth">
+        <div class = 'result-container'>
        <div class = 'result'> <img src = '${thumbnailURL}' alt = '${title}'/> </div>
        <p class='name'>  <a href='${schURL}'>${title}</a></p>
        <div class = 'rating'>  <p> ${rating} </p> 
        <p> ${synopsis} </p>
        <p class = 'nameLink'> <a href='${schURL}' target = '_blank'>${title}</a> </p>
        </div>
+      </div>
       </div>`;
 
         // add line to bigString
@@ -163,13 +170,16 @@ export const dataLoaded = (e) => {
         if (!thumbnailURL) thumbnailURL = "images/no-image-found.png";
 
         // ES6 - String templating to display our anime search data 
-        let line = `<div class = 'result-container'>
+        let line = `
+        <div class="column is-one-fifth">
+        <div class = 'result-container'>
         <div class = 'result'> <img src = '${thumbnailURL}' alt = '${title}'/> </div>
         <p class='name'>  <a href='${url}'>${title}</a></p>
         <div class = 'rating'>  <p> ${rating} </p> 
         <p> ${synopsis} </p>
         <p class = 'nameLink'> <a href='${url}' target = '_blank'>${title}</a> </p>
         </div>
+       </div>
        </div>`;
 
 
@@ -182,6 +192,6 @@ export const dataLoaded = (e) => {
     document.querySelector(".columns.is-multiline").innerHTML = bigString;
 
     // success message when results are found 
-    document.querySelector("#debug").innerHTML = "<b id = 'found' class = 'has-text-success has-text-weight-bold p-2'>Success!</b><p><i>Here are " + results.length + " results for '" + options.term + "'</i></p>";
+    document.querySelector("#debug").innerHTML = "<b id = 'found' class = 'has-text-success has-text-weight-bold p-2'>Success!</b><p><i class = p-2>Here are " + results.length + " results for '" + options.term + "'</i></p>";
 
 }

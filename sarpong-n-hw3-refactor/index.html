@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Anime Schedule Finder</title>
-<!--	<link href="styles/main.css" rel=stylesheet> -->
+	<link href="styles/main.css" rel=stylesheet> 
 	<script src="./js/loader.js" type="module"></script>
 	
 
@@ -72,23 +72,23 @@
 	<header>
 		<section class="section has-text-centered">
 		<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-danger-dark px-s6" >Anime Finder</h1>
+		<div class="columns">
+			<div class="column"><img id="itachi" src="images/anime-naruto.gif" alt="Itachi" class = "image is-96x96"></div>
+			<div class="column"><img id="kyuubi" src="images/kyuubi.gif" alt="Naruto Kyuubi Mode" class = "image is-96x96"></div>
+			<div class="column"><img id="ichigo" src="images/bleach.gif" alt="Ichigo" class = "image is-96x96"></div>
+			<div class="column"><img id="luffy" src="images/one_piece.gif" alt="Luffy" class = "image is-96x96"></div>
+			<div class="column"><img id="sasuke" src="images/sasuke.gif" alt="Sasuke" class = "image is-96x96"></div>
+			<div class="column"><img id="goku" src="images/ssb_goku.gif" alt="SSB Goku" class = "image is-96x96"></div>
+		</div>
 		</section>
-		<!---<img id="itachi" src="images/anime-naruto.gif" alt="Itachi">
-		<img id="kyuubi" src="images/kyuubi.gif" alt="Naruto Kyuubi Mode">
-		<img id="ichigo" src="images/bleach.gif" alt="Ichigo">
-		<img id="luffy" src="images/one_piece.gif" alt="Luffy">
-		<img id="sasuke" src="images/sasuke.gif" alt="Sasuke">
-		<img id="goku" src="images/ssb_goku.gif" alt="SSB Goku"> -->
-
-
-
 	</header>
+	
 
 	
 
 	<section class="mainsearch">
 		<p class = "has-text-danger has-text-weight-bold p-2">Search Term (Enter an anime) -&gt; <input id="searchterm" type="text" size="20" maxlength="20" /></p>
-		<div class="has-text-danger has-text-weight-bold p-2">
+		<div class="select is-rounded has-text-danger has-text-weight-bold p-2">
 			Max # results ->
 			<select id="limit">
 				<option value="">Select a Number</option>
@@ -99,12 +99,8 @@
 
 			</select>
 		</div>
-		<p><button type="button" id="search" class="button is-warning m-2">Search!</button></p>
-
-
-
-
-		<div class="has-text-danger has-text-weight-bold p-2">
+		
+		<div class="select is-rounded has-text-danger has-text-weight-bold p-2">
 			Filter by Genre ->
 			<select id="genre">
 				<option value="">Select a Genre</option>
@@ -130,8 +126,10 @@
 			</select>
 		</div>
 
+	
 
-		<div class="has-text-danger has-text-weight-bold p-2">
+
+		<div class=" select is-rounded has-text-danger has-text-weight-bold p-2">
 			Filter by Days ->
 			<select id="filter">
 				<option value="">Select a Day</option>
@@ -147,23 +145,24 @@
 		</div>
 	</section>
 
+	
+		<button  id="search" class="button is-warning mt-6 mx-2">Search!</button>
+	 
+
+	
+
 	<p id="debug"></p>
+	<hr>
 	<h2 class = "has-text-danger has-text-weight-bold p-2">Results</h2>
 
-	<div id="content" class = "has-text-danger has-text-weight-bold p-2">
-		<p>No data yet!</p>
-	</div>
 
 	<section class="section">
-		<div class="container">
 		<div class="columns is-multiline">
-			<div class="column is-one-fifth">
-
-			</div>
-		</div>
-			</div>
+			<p>No data yet!</p>
 		</div>
 	</section>
+
+	
 	
 
 

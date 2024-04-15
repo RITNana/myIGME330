@@ -1,12 +1,12 @@
 
 html {
     font-family: "Permanent Marker";
-   background-color: #AFE0CE;
-    color: #F63E02; 
+ /*  background-color: #AFE0CE;
+    color: #F63E02; */
 }
 
 
-header {
+/* header {
     text-align: center;
     padding: 10px;
     border: 10px solid yellow;
@@ -100,7 +100,7 @@ h2 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px 40px;
-}
+} */
 
 .result-container {
     position: relative;
@@ -112,7 +112,7 @@ h2 {
     border: 2mm ridge rgba(243, 183, 0);
     display: block;
 
-}
+} 
 
 
 
@@ -141,12 +141,12 @@ h2 {
 
 
 
-.rating p {
+/*.rating p {
     font-size: 16px;
     color: white;
     margin: 10px 0;
     line-height: 1.4;
-}
+} 
 
 button {
     display: inline-block;
@@ -207,7 +207,7 @@ button:active {
     ;
 }
 
-a.doc {
+/*a.doc {
     cursor: pointer;
     font-size: 20px;
 }
@@ -233,4 +233,4 @@ a.doc:active {
    cursor: pointer;
     color: #AFE0CE;
     background-color: rgb(84, 8, 8); 
-} 
+} */
