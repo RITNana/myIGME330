@@ -1,6 +1,6 @@
 import * as loaded from "./data.js";
 
-let term = ""; // we declared `term` out here because we will need it later
+export let term;
 
 // create the API url to obtain data for anime genres to display for the webpage
 export const getGenres = () => {
@@ -78,7 +78,7 @@ export const getData = () => {
 
 
     // 3 - parse the user entered term we wish to search
-    term = document.querySelector("#searchterm").value;
+    let term = document.querySelector("#searchterm").value;
     localStorage.setItem("ns8363-search", term);
 
 
@@ -93,6 +93,8 @@ export const getData = () => {
         document.querySelector("#debug").innerHTML = "<b>Enter a search term first!</b>";
         return;
     }
+
+    
 
     // append search term and 'Safe For Work' parameters to URL
     url += "&q=" + term;
@@ -126,6 +128,8 @@ export const getData = () => {
 
 
 }
+
+
 
 // if an error occurs when requesting the data from the Jikan Anime API
 export const dataError = (e) => {

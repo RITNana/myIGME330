@@ -7,36 +7,41 @@
 // In this instance, we feel the code is more readable if written this way
 // If you want to re-write these as ES6 arrow functions, to be consistent with the other files, go ahead!
 
-import * as utils from './utils.js';
-import * as audio from './audio.js';
-import * as canvas from './visualizer.js';
-import * as json from './json.js';
+import * as utils from './utils';
+import * as audio  from './audio' ;
+import * as canvas from './visualizer';
+import * as json from './json';
+import { DrawParams } from './interfaces/drawParams.interface';
 
 
-let drawParams = {
+
+let barsCb = document.querySelector("#cb-bars") as HTMLInputElement; 
+let circlesCb = document.querySelector("#cb-circles") as HTMLInputElement;
+let trebleBox = document.querySelector("#cb-highshelf") as HTMLInputElement;
+let bassBox = document.querySelector("#cb-lowshelf") as HTMLInputElement;
+
+let noiseSlider = document.querySelector("#slider-noise") as HTMLInputElement;
+let invertSlider = document.querySelector("#slider-invert") as HTMLInputElement;
+let embossSlider = document.querySelector("#slider-emboss") as HTMLInputElement; 
+
+let btnplay = document.querySelector("#btnplay") as HTMLButtonElement;
+let changeData =  document.querySelector("#change-data") as HTMLSelectElement
+
+
+let highshelf = trebleBox.checked;
+let lowshelf = bassBox.checked;
+
+
+let drawParams: DrawParams ={
   showBars: true,
-  showCircles: true,
+  showCircles: false,
   toggleWave: false,
   noiseLevel: 0,
   invertLevel: 0,
   embossLevel: 0
-};
-
-let highshelf = false;
-let lowshelf = false;
+}
 
 
-
-
-
-let barsCb = document.querySelector("#cb-bars");
-let circlesCb = document.querySelector("#cb-circles");
-let trebleBox = document.querySelector("#cb-highshelf");
-let bassBox = document.querySelector("#cb-lowshelf");
-
-let noiseSlider = document.querySelector("#slider-noise");
-let invertSlider = document.querySelector("#slider-invert");
-let embossSlider = document.querySelector("#slider-emboss");
 
 
 
@@ -70,10 +75,14 @@ const setupUI = (canvasElement) => {
   json.loadJSON();
 
   // A - hookup fullscreen button
-  const fsButton = document.querySelector("#btn-fs");
+  const fsButton = document.querySelector("#btn-fs") as HTMLButtonElement;
+
 
   // add .onclick event to button 
   btnplay.onclick = e => {
+
+    const target = e.target as HTMLInputElement
+   
     console.log(`audioCtx.state before = ${audio.audioCtx.state}`);
 
     // check if context is in suspended state (autoplay policy)
@@ -82,13 +91,13 @@ const setupUI = (canvasElement) => {
       
     }
     console.log(`audioCtx.state after = ${audio.audioCtx.state}`);
-    if (e.target.dataset.playing == "no") {
+    if (target.dataset.playing == "no") {
       // if track is currently paused, play it
       audio.playCurrentSound();
-      e.target.dataset.playing = "yes"; // the CSS will set the text to "Pause"
+      target.dataset.playing = "yes"; // the CSS will set the text to "Pause"
     } else {
       audio.pauseCurrentSound();
-      e.target.dataset.playing = "no"; // the CSS will set the text to "Play"
+      target.dataset.playing = "no"; // the CSS will set the text to "Play"
     }
   };
 
@@ -98,28 +107,32 @@ const setupUI = (canvasElement) => {
   };
 
   // B - hookup volume slider and label
-  let volumeSlider = document.querySelector("#slider-volume");
-  let volumeLabel = document.querySelector("#label-volume");
+  let volumeSlider = document.querySelector("#slider-volume") as HTMLInputElement;
+  let volumeLabel = document.querySelector("#label-volume") as HTMLInputElement;
 
 
 
   // add .oninput to slider
   volumeSlider.oninput = e => {
+
+    const target = e.target as HTMLInputElement
     // set the gain
-    audio.setVolume(e.target.value);
+    audio.setVolume(target.value);
     // update value of label to match value of slider
-    volumeLabel.innerHTML = Math.round((e.target.value / 2 * 100));
+    volumeLabel.innerHTML = `${Math.round((parseFloat(target.value) / 2 * 100))}`;
   };
 
   // set value of label to match initial value of slider
   volumeSlider.dispatchEvent(new Event("input"));
 
   // C - hook up track <select>
-  let trackSheet = document.querySelector("#select-track");
+  let trackSheet = document.querySelector("#select-track") as HTMLSelectElement;
   // add .onchange event to <select>
   trackSheet.onchange = e => {
+
+    const target = e.target as HTMLInputElement
     // pause the current track if it is playing
-    audio.loadSoundFile(e.target.value);
+    audio.loadSoundFile(target.value);
     if (btnplay.dataset.playing == "yes") {
       btnplay.dispatchEvent(new MouseEvent("click"));
     }
@@ -143,37 +156,40 @@ embossSlider.addEventListener("input", () => {
 
   // Event handler for 'Show Bars' Button
   barsCb.addEventListener("change", () => {
-    if (!barsCb.checked) {
-      canvas.draw(drawParams.showBars = false)
-    } else {
-      canvas.draw(drawParams.showBars = true)
-    }
+   
+      drawParams.showBars = barsCb.checked
+    canvas.draw(drawParams);
+    
   });
 
   // Event handler for 'Show Circles' Button
   circlesCb.addEventListener("change", () => {
-    if (!circlesCb.checked) {
-      canvas.draw(drawParams.showCircles = false)
-    } else {
-      canvas.draw(drawParams.showCircles = true)
-    }
+    
+      drawParams.showCircles = circlesCb.checked
+      canvas.draw(drawParams)
+    
   })
 
   // event handler for trebleBox checking to see if the checbox has been clicked by input
   trebleBox.onchange = e =>{
-    highshelf = e.target.checked;
+    const target = e.target as HTMLInputElement;
+    highshelf = target.checked;
     toggleHighshelf()
   }
 
   // event handler for bassBox checking to see if the checbox has been clicked by input
   bassBox.onchange = e =>{
-    lowshelf = e.target.checked;
+    const target = e.target as HTMLInputElement;
+    lowshelf = target.checked;
     toggleLowshelf();
   }
 
   // changing the data being displayed
-  document.querySelector("#change-data").onchange = e => {
-    if(e.target.value == "frequency"){
+  changeData.onchange = e  => {
+
+    const target = e.target as HTMLInputElement;
+
+    if(target.value == "frequency"){
       drawParams.toggleWave = false ;
     } else {
       drawParams.toggleWave = true;

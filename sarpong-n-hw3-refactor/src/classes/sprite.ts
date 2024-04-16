@@ -1,7 +1,20 @@
 
 // Create an ES6 class and pass on instances of a Sprite
-export class Sprite {
-    constructor(x, y, width, height, color, playButton) {
+export class Sprite{
+
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    color: string;
+    angle: number;
+    velocityX: number;
+    velocityY: number;
+    scaleFactor: number;
+    scaleDirection: number;
+    playButton: HTMLButtonElement;
+
+    constructor(x: number, y: number, width: number, height: number, color: string, playButton: HTMLButtonElement) {
         this.x = x; 
         this.y = y; 
         this.width = width;
@@ -13,11 +26,10 @@ export class Sprite {
         this.scaleFactor = 1.0;
         this.scaleDirection = 1;
         this.playButton = playButton
-    }
-
+    } 
     // use the audio data to move the sprites in both x and y directions
     // allow the shapes to scale in one direction and multiple as the shapes move toward the canvas more
-    update(audioData, canvasWidth, canvasHeight) {
+    update(audioData: number[], canvasWidth: number, canvasHeight: number) {
 
         if (this.playButton.dataset.playing == "yes") {
 
@@ -51,7 +63,7 @@ export class Sprite {
 
 // draw our rectangle with its fill and scale attribute
 // save the state and restore for later use
-    draw(ctx) {
+    draw(ctx:CanvasRenderingContext2D) {
         ctx.save();
         ctx.fillStyle = this.color
         ctx.scale(this.scaleFactor, this.scaleFactor)

@@ -7,8 +7,9 @@
       - maybe a better name for this file/module would be *visualizer.js* ?
 */
 
-import * as utils from './utils.js';
-import { Sprite } from './Sprite.js';
+import * as utils from './utils';
+import { Sprite } from './classes/sprite';
+import { DrawParams } from './interfaces/drawParams.interface';
 
 
 
@@ -16,7 +17,7 @@ let ctx, canvasWidth, canvasHeight, analyserNode, audioData;
 
 const sprites = [];
 const numberOfSprites = 100
- let sprite;
+ 
 
 
 
@@ -33,7 +34,13 @@ const setupCanvas = (canvasElement, analyserNodeRef, playButton) => {
         audioData = new Uint8Array(analyserNode.fftSize / 2)
 
              for(let i = 0; i < numberOfSprites; i++){
-        sprite = new Sprite(utils.getRandom(0, 700), utils.getRandom(0, 300), utils.getRandom(10, 30,), utils.getRandom(10, 30), utils.getRandomColor(), playButton)
+      const  sprite = new Sprite(
+        utils.getRandom(0, 700), 
+        utils.getRandom(0, 300), 
+        utils.getRandom(10, 30,), 
+        utils.getRandom(10, 30), 
+        utils.getRandomColor(), 
+        playButton)
                  sprites.push(sprite)
 
          }
@@ -41,7 +48,7 @@ const setupCanvas = (canvasElement, analyserNodeRef, playButton) => {
 }
 
 
-const draw = (params = {}) => {
+const draw = (params:DrawParams) => {
     // Update and draw the sprites
      sprites.forEach((sprite) => {
     sprite.update(audioData, canvasWidth, canvasHeight);

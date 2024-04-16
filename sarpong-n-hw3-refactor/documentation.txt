@@ -14,3 +14,8 @@ be sure to give yourself a grade for this section, between 0% and 15%
 5%, The only main differences I did was take out the gradient and made all the checkboxes for the effects become sliders. 
 Although this allows the control to better for the user, there is not much after that. The animation of the rectangles are creative
 and intriguing, so I would say that is where i was able to contribute some aesthetic to this visualizer. 
+
+HW-3-Refactor Documentation
+The language I coded in was TypeScript. I implictly and explicity typed my paramters and necessary functions in order for the program
+to understadn theb intention I had. I also created interfaces for DrawParams and DEFAULTS. Personally, I made sure to have key:value pairs
+defined for my Sprite.js class and exported it for visualizer.ts to still function

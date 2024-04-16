@@ -11,8 +11,8 @@ export const loadJSON = () => {
 
             // targeting the retrieved JSON data from the XML request
             // declare and intialize a variable to parse, or convert, JSON string into an object
-
-            json = JSON.parse(e.target.responseText)
+            
+            json = JSON.parse(xhr.responseText)
         } catch{
             console.log("BAD JSON!");
             return;
@@ -31,7 +31,7 @@ export const loadJSON = () => {
         document.querySelector("#output").innerHTML = html;
     };
 
-    xhr.onerror = e => console.log(`In onerror - HTTP Status Code = ${e.target.status}`);
+    xhr.onerror = e => console.log(`In onerror - HTTP Status Code = ${xhr.status}`);
     xhr.open("GET", url); // reinitializes the request we sent "GET"
     xhr.send(); // send request to the server
 }

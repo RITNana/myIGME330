@@ -21,7 +21,7 @@ export const genreDataLoaded = (e) => {
 
     // if no results are found, display an error message for the specific anime name used
     if (!results) {
-        document.querySelector(".container").innerHTML = `<p><i>Problem! <b>No results for "${options.filter}"</b></i></p>`;
+        document.querySelector(".container").innerHTML = `<p class = p-2><i>Problem! <b>No results for "${options.filter}"</b></i></p>`;
         return;
     }
 
@@ -80,7 +80,7 @@ export const scheduleDataLoaded = (e) => {
 
     // if no results are found, display an error message for the specific anime name used
     if (!results) {
-        document.querySelector("#debug").innerHTML = `<p><i>Problem! <b>No results for "${options.filter}"</b></i></p>`;
+        document.querySelector("#debug").innerHTML = `<p><i class = "p-2">Problem! <b class = "p-2">No results for "${options.filter}"</b></i></p>`;
         return;
     }
 
@@ -137,7 +137,7 @@ export const dataLoaded = (e) => {
     // 4 - if there are no results, print a message and return
     if (obj.error) {
 
-        document.querySelector("#debug").innerHTML = `<p><i>Problem! <b>No search term Found! Please enter a search term</b></i></p>`;
+        document.querySelector("#debug").innerHTML = `<p><i>Problem! <b class = p-2 >No search term Found! Please enter a search term</b></i></p>`;
         return; // Bail out
     }
 
@@ -192,6 +192,6 @@ export const dataLoaded = (e) => {
     document.querySelector(".columns.is-multiline").innerHTML = bigString;
 
     // success message when results are found 
-    document.querySelector("#debug").innerHTML = "<b id = 'found' class = 'has-text-success has-text-weight-bold p-2'>Success!</b><p><i class = p-2>Here are " + results.length + " results for '" + options.term + "'</i></p>";
+    document.querySelector("#debug").innerHTML = "<b id = 'found' class = 'has-text-success has-text-weight-bold p-2'>Success!</b><p><i class = p-2>Here are " + results.length + " results for '" + options.term + "</i></p>";
 
 }

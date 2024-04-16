@@ -1,8 +1,8 @@
-const makeColor = (red, green, blue, alpha = 1) => {
+const makeColor = (red: number, green: number, blue: number, alpha = 1) => {
     return `rgba(${red},${green},${blue},${alpha})`;
   };
   
-  const getRandom = (min, max) => {
+  const getRandom = (min: number, max: number) => {
     return Math.random() * (max - min) + min;
   };
   
