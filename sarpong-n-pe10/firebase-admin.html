@@ -29,13 +29,7 @@ import {getDatabase, ref, set, push, onValue} from "https://www.gstatic.com/fire
          const app = initializeApp(firebaseConfig);
         console.log(app)
 
-        const writeUserData = (userId, name, email) => {
-            const db = getDatabase();
-            set(ref(db, "users/" + userId), {
-                username: name,
-                email: email
-            });
-        };
+  
 
   console.log(app); // make sure firebase is loaded
 	
@@ -46,14 +40,29 @@ import {getDatabase, ref, set, push, onValue} from "https://www.gstatic.com/fire
   const scoresRef = ref(db, 'scores');
 
   const scoresChanged = (snapshot) => {
+    let scoresHTML = ""
     snapshot.forEach(score => {
       const childKey = score.key;
       const childData = score.val();
-      console.log(childKey,childData);
+      const listItem = `<li>${childData.userId} - ${childData.game} - ${childData.score}`
+      scoresHTML += listItem
+        console.log(childKey,childData);
     });
+
+    document.querySelector("#scoresList").innerHTML = scoresHTML
   }
 
   onValue(scoresRef,scoresChanged);
+
+  const madmaxChanged = (data) => {
+    let obj = data.val();
+    console.log("scores2/ - madmaxChanged", obj);
+    console.log("game = ", obj.game);
+    console.log("score = ", obj.score);
+  };
+
+const scoresRef2 = ref(db, 'scores2/MADMAX');
+onValue(scoresRef2,madmaxChanged);
 	
 </script>
 </body>
