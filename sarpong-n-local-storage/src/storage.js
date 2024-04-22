@@ -1,6 +1,6 @@
 // a private (to this module) unique name to store the app data under
 // if you put this on banjo, change `abc1234` to your banjo account name
-const storeName = "ns8363-list-app";
+const storeName = "Nana's Inputted Names :)";
 
 // a private (to this module) helper function
 // it will load in a string from localStorage and convert it to a JSON object
